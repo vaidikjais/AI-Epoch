@@ -1,0 +1,20 @@
+REVISION REQUEST:
+The previous newsletter draft was reviewed and needs changes.
+
+EDITOR FEEDBACK:
+{feedback}
+
+ORIGINAL SOURCE ARTICLES (ground truth — all facts MUST come from here):
+{articles_json}
+
+PREVIOUS DRAFT (for reference only — DO NOT copy errors from it):
+{previous_draft}
+
+RULES:
+1. Address every point in the EDITOR FEEDBACK.
+2. Every claim, number, name, and date MUST be verifiable against the ORIGINAL SOURCE ARTICLES above. If the source does not mention it, REMOVE the claim entirely — do NOT replace it with a different unsourced claim.
+3. When fixing a fact-check issue, the correct action is usually to DELETE the unsupported sentence or replace it with a DIRECT quote or paraphrase from the source. Never invent new details.
+4. Keep the same JSON schema and the same set of articles. Do not add or remove articles.
+5. Improve summaries by pulling richer detail from the source articles — concrete facts, numbers, technical specifics that ARE in the source text.
+6. Preserve source_label and source_url values from the previous draft.
+7. Return ONLY the updated JSON, no commentary.

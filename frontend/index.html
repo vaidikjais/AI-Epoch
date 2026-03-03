@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Epoch | Landing</title>
+    <style>
+      :root {
+        --bg: #ececee;
+        --panel: #ffffff;
+        --text: #46464b;
+        --muted: #8f8f97;
+        --accent: #7d5cff;
+        --accent-soft: #a89af6;
+        --line: #cfcfd6;
+        --radius: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.35;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #b8b9c4;
+        border-radius: 8px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9e9fad;
+      }
+
+      .page {
+        max-width: 1280px;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(236, 236, 238, 0.94);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 74px;
+        padding: 0 40px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand-main {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        line-height: 1;
+        color: #101014;
+      }
+
+      .brand-dot {
+        color: var(--accent);
+        font-size: 34px;
+        line-height: 0;
+      }
+
+      .brand-sub {
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        font-size: 30px;
+        color: #19191d;
+        line-height: 1;
+      }
+
+      .btn {
+        border: 1px solid #7f7f89;
+        background: #efeff4;
+        color: #3f3f46;
+        border-radius: 12px;
+        padding: 9px 16px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 650;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .btn:hover {
+        background: #e5e5ec;
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        position: relative;
+        padding: 32px 40px 20px;
+      }
+
+      .kicker {
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .headline {
+        max-width: 1120px;
+        font-size: clamp(42px, 7vw, 88px);
+        line-height: 0.92;
+        letter-spacing: -2.2px;
+        font-weight: 900;
+        color: #58595e;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .headline em {
+        text-transform: none;
+        font-weight: 500;
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        color: var(--accent);
+        letter-spacing: -1px;
+      }
+
+      .intro {
+        display: block;
+        max-width: 1040px;
+      }
+
+      .intro p {
+        font-size: clamp(14px, 1.6vw, 18px);
+        line-height: 1.4;
+        color: #292a2f;
+      }
+
+      .shape {
+        position: absolute;
+        right: 6%;
+        top: 20%;
+        width: 170px;
+        height: 170px;
+        border-radius: 24%;
+        border: 2px solid #b8b8c3;
+        transform: rotate(16deg);
+        opacity: 0.7;
+      }
+
+      .shape::before,
+      .shape::after {
+        content: "";
+        position: absolute;
+        inset: 22px;
+        border-radius: 20%;
+        border: 2px solid #c8c8d0;
+      }
+
+      .shape::after {
+        inset: 44px;
+        border-color: #d5d5de;
+      }
+
+      .section {
+        padding: 16px 40px 30px;
+      }
+
+      .section h2 {
+        font-size: clamp(26px, 3vw, 38px);
+        letter-spacing: -1.2px;
+        line-height: 1;
+        margin-bottom: 14px;
+        color: #3d3d43;
+      }
+
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .card .num {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(125, 92, 255, 0.12);
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+
+      .card p {
+        font-size: 14px;
+        color: #5c5c66;
+        line-height: 1.45;
+      }
+
+      .contact {
+        margin: 6px 40px 34px;
+        background: #f4f4f8;
+        color: #2f3138;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .contact h2 {
+        margin-bottom: 4px;
+        color: #2d2f37;
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .contact p {
+        color: #666a76;
+        font-size: 14px;
+      }
+
+      .contact .btn {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+        font-size: 14px;
+        padding: 9px 14px;
+      }
+      .contact .btn:hover {
+        background: var(--accent-soft);
+      }
+
+      @media (max-width: 1080px) {
+        .topbar-inner {
+          height: 74px;
+          padding: 0 18px;
+        }
+        .brand-main,
+        .brand-sub {
+          font-size: 24px;
+        }
+        .brand-dot {
+          font-size: 28px;
+        }
+        .btn {
+          font-size: 14px;
+          padding: 8px 12px;
+        }
+        .hero,
+        .section {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+        .shape {
+          display: none;
+        }
+        .how-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact {
+          margin-left: 18px;
+          margin-right: 18px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .headline {
+          letter-spacing: -1.2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="#home" class="brand" aria-label="AI Epoch Home">
+          <span class="brand-main">AI</span>
+          <span class="brand-dot">.</span>
+          <span class="brand-sub">Epoch</span>
+        </a>
+
+        <a class="btn" href="/app">Generate Newsletter</a>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero" id="home">
+        <p class="kicker">AI-powered editorial workflow</p>
+        <h1 class="headline">SOLVING <em>newsletter</em><br />PROBLEMS</h1>
+
+        <div class="intro" id="about">
+          <p>
+            AI Epoch helps teams scout, curate, extract, edit, QA, and deliver
+            high-quality newsletters from one pipeline.
+          </p>
+        </div>
+
+        <div class="shape" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="how">
+        <h2>How it works</h2>
+        <div class="how-grid">
+          <article class="card">
+            <div class="num">1</div>
+            <h3>Collect & Curate</h3>
+            <p>
+              Scout sources, deduplicate candidates, and keep only high-signal
+              stories relevant to your topic.
+            </p>
+          </article>
+          <article class="card">
+            <div class="num">2</div>
+            <h3>Extract & Edit</h3>
+            <p>
+              Pull clean article content, compose concise summaries, and shape
+              newsletter-ready drafts with guardrails.
+            </p>
+          </article>
+          <article class="card">
+            <div class="num">3</div>
+            <h3>QA & Send</h3>
+            <p>
+              Review quality checks, approve with confidence, and send polished
+              newsletters to your audience groups.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="contact"
+        id="contact"
+        aria-label="Contact and call to action"
+      >
+        <div>
+          <h2>Ready to generate your next issue?</h2>
+          <p>
+            Open the pipeline dashboard and run your full newsletter workflow in
+            minutes.
+          </p>
+        </div>
+        <a class="btn" href="/app">Generate Newsletter</a>
+      </section>
+    </main>
+  </body>
+</html>

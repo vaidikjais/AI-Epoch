@@ -1,0 +1,54 @@
+# VCS
+.git
+
+# Python cache
+**/__pycache__
+**/*.pyc
+**/*.pyo
+.pytest_cache
+.mypy_cache
+
+# Virtual environments
+.venv/
+venv/
+agentic/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Tests (not needed in production image)
+**/tests/
+**/test_*
+
+# Documentation
+docs/
+
+# Local DB files
+*.db
+*.sqlite3
+
+# Docker meta (avoid recursion)
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Misc
+*.log
+scripts/
+frontend/
+uv.lock
+.python-version

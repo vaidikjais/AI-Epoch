@@ -1,0 +1,174 @@
+Create issue #{issue_number} of AI Newsletter.
+
+You have {article_count} curated articles. Organize them into sections for maximum readability.
+
+ARTICLES (all pre-selected for quality):
+{articles_json}
+
+WRITING FORMAT — for EVERY article summary, use this structure:
+
+  "What happened" — 1-2 sentences stating the news clearly with specific details (names, numbers, dates)
+  "The details" — 3-5 concrete facts drawn from the article content (key metrics, who's involved, what changed, technical specifics, comparisons to prior state)
+  "Why it matters" — 2-3 sentences of YOUR editorial analysis: implications for the industry, what this means for practitioners, what to watch for next
+
+Combine these naturally into a flowing paragraph. Do NOT use literal headers like "What happened:" in the summary text. Write it as a coherent, information-dense paragraph that naturally flows from news to details to significance.
+
+IMPORTANT: Use SPECIFIC details from the content_preview — names, numbers, benchmarks, quotes, comparisons. Vague summaries like "this is important for the AI industry" are NOT acceptable. Every sentence should contain at least one concrete fact.
+
+SECTION GUIDELINES:
+
+HEADLINE (1 article):
+- The MOST impactful story — breaking news, major launch, or paradigm shift
+- 150-200 words using the full What→Details→Why structure
+- This is the story people will talk about — make it rich with detail
+
+LATEST NEWS (2-4 articles):
+- News coverage articles
+- 100-150 words each — enough to fully explain what happened, the key details, and why it matters
+- Use the article's pre-resolved source_label and url — they already point to the primary source when available
+
+COMPANY UPDATES (2-3 articles):
+- OFFICIAL announcements directly from company blogs (OpenAI, Google, Anthropic, HuggingFace, etc.)
+- 100-150 words each — cover what was announced, technical details, and industry implications
+- These are PRIMARY sources — link directly to the company blog post
+
+RESEARCH SPOTLIGHT (0-2 articles):
+- Academic papers from arXiv, research labs, or technical deep-dives
+- 150-200 words: explain the problem being solved, the approach/methodology, key results with numbers, and why practitioners should care
+- Link to the actual paper URL
+- SKIP if no research articles present
+
+TOOLS & PRODUCTS (0-2 articles):
+- Tool launches, product updates, commercial AI tools
+- 80-120 words: what it does, the technical approach, who needs it, how to get started
+- SKIP if none present
+
+OPEN SOURCE SPOTLIGHT (0-2 articles):
+- Trending GitHub repositories, new open-source AI tools/frameworks
+- 80-120 words: what it does, star count and community traction, why it's worth checking out
+- Link directly to the GitHub repo URL
+- Only include articles with source_provider "github_trending" or domain "github.com"
+- SKIP if no GitHub-sourced articles present
+
+QUICK BYTES (0-2 articles):
+- Remaining articles that don't fit above
+- 60-80 words: opinionated but still informative with concrete details
+- SKIP if all articles fit in sections above
+
+SOURCE ATTRIBUTION RULES:
+- Each article has a pre-resolved "source_label" and "url" field. USE THEM AS-IS for source_label and source_url in your output.
+- If "source_label" is non-empty, use it exactly (e.g. "OpenAI", "ByteDance", "arXiv"). Do NOT substitute the news outlet name.
+- If "secondary_source" is non-empty, it means the article was originally from a news site but has been resolved to its primary source. The "url" already points to the primary source. Use it.
+- If "source_label" is empty, derive a label from the "domain" field.
+
+CRITICAL RULES:
+1. ALL {article_count} articles MUST appear somewhere in the newsletter
+2. Use the pre-resolved "url" and "source_label" from each article — do NOT override them with news outlet names
+3. arXiv papers go in Research Spotlight, not Latest News
+4. Company blog posts go in Company Updates, not Latest News
+5. GitHub trending repos go in Open Source Spotlight, not Tools & Products
+6. If sections have no matching articles, omit them (return null or [])
+7. Write with personality — be the smart friend who explains AI news in depth
+8. NEVER write a summary shorter than 80 words — every article deserves proper coverage
+9. Include SPECIFIC numbers, names, and technical details from the content_preview — do NOT generalize
+
+OUTPUT SCHEMA:
+{{
+  "issue_title": "AI Newsletter",
+  "issue_number": {issue_number},
+  "date_iso": "{date_iso}",
+  "subheadline": "Brief comma-separated list of top 3 topics",
+  "intro": "Good morning. [2-3 sentences setting the scene for this issue's stories, referencing the biggest story with a specific detail.] Here's what matters today:",
+
+  "headline": {{
+    "section_type": "headline",
+    "title": "Compelling headline — not just the article title",
+    "summary": "150-200 word summary: What happened with specifics. Key details with numbers and names. Why it matters for practitioners.",
+    "source_label": "Use article's source_label field",
+    "source_url": "Use article's url field",
+    "emoji": "🏆",
+    "confidence": "high"
+  }},
+
+  "latest_news": [
+    {{
+      "section_type": "news",
+      "title": "News headline",
+      "summary": "100-150 word detailed summary with specific facts and editorial analysis",
+      "source_label": "From article's source_label",
+      "source_url": "From article's url",
+      "emoji": "📰",
+      "confidence": "high"
+    }}
+  ],
+
+  "company_updates": [
+    {{
+      "section_type": "company_update",
+      "title": "Company announcement headline",
+      "summary": "100-150 word summary covering what was announced, technical details, and implications",
+      "source_label": "OpenAI/Google/etc",
+      "source_url": "Direct company blog URL",
+      "emoji": "🏢",
+      "confidence": "high"
+    }}
+  ],
+
+  "research_spotlight": {{
+    "section_type": "research",
+    "title": "Research title — made accessible",
+    "summary": "150-200 word explanation: the problem, the methodology, key quantitative results, why practitioners should care",
+    "source_label": "arXiv / Lab name",
+    "source_url": "Paper URL",
+    "emoji": "🔬",
+    "confidence": "high"
+  }} OR null,
+
+  "tools_and_products": [
+    {{
+      "section_type": "product",
+      "title": "Tool/product name",
+      "summary": "80-120 word practical description: what it does, technical approach, who benefits, how to start",
+      "source_label": "Source",
+      "source_url": "URL",
+      "emoji": "⚙️",
+      "confidence": "high"
+    }}
+  ] OR [],
+
+  "open_source_spotlight": [
+    {{
+      "section_type": "open_source",
+      "title": "Repo name — one-line description",
+      "summary": "80-120 word description: what it does, community traction (stars), why practitioners should check it out",
+      "source_label": "GitHub",
+      "source_url": "GitHub repo URL",
+      "emoji": "🐙",
+      "confidence": "high"
+    }}
+  ] OR [],
+
+  "quick_bytes": [
+    {{
+      "section_type": "quick_byte",
+      "title": "Short punchy headline",
+      "summary": "60-80 word opinionated take with concrete details",
+      "source_label": "Source",
+      "source_url": "URL",
+      "emoji": "⚡",
+      "confidence": "high"
+    }}
+  ] OR [],
+
+  "wrap": "Keep building, keep learning. See you next time.",
+  "footer": "© 2025 AI Newsletter | Curated with intelligence, crafted with care",
+  "total_articles": {article_count},
+  "estimated_read_time": "6-8 minutes",
+  "quality_checks": {{
+    "all_sections_present": true,
+    "word_counts_valid": true,
+    "all_articles_included": true
+  }}
+}}
+
+Return ONLY this JSON structure. Ensure all {article_count} articles appear.

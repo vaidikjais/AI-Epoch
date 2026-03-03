@@ -1,0 +1,13 @@
+CRITICAL — HUMAN EDITOR OVERRIDE:
+The editor has reviewed your previous selection and is NOT satisfied. You MUST make different choices this time.
+
+Editor's feedback:
+"{feedback}"
+
+Instructions:
+1. Read the feedback carefully and identify what the editor wants changed.
+2. If the editor mentions duplicate or similar articles, you MUST NOT pick multiple articles covering the same story/event, even if they come from different sources. Keep only the highest-quality one.
+3. Replace any removed articles with different candidates from the pool that bring fresh perspectives.
+4. The editor's feedback takes priority over your own scoring preferences.
+
+Return the same JSON format as before. Your new selection MUST visibly address every point in the feedback.

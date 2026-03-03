@@ -1,0 +1,25 @@
+You are reading a news article from {source_domain}. Your task is to:
+1. Identify the ORIGINAL PRIMARY SOURCE that this article is reporting on.
+2. Always identify the main SUBJECT (company, project, event, or organization) being covered.
+
+Primary sources are: official company blog posts, research papers (arXiv, conference papers), official press releases, GitHub repositories, official product pages, or official event/conference websites.
+
+ARTICLE URL: {article_url}
+ARTICLE TITLE: {article_title}
+ARTICLE CONTENT (truncated):
+{content}
+
+INSTRUCTIONS:
+1. Read the article and identify the main subject — what company, project, event, or organization is this about?
+2. Look for any URLs in the text that point to the original source (company blog, research paper, official announcement, event website).
+3. If no URL is explicitly mentioned but you can infer the primary source (e.g. "OpenAI announced on its blog..."), construct the most likely URL.
+4. ALWAYS provide a "subject_label" — the name of the company, project, event, or organization the article is about. This should NEVER be the news outlet name (not "{source_domain}").
+
+Return ONLY valid JSON in this exact format:
+{{"primary_url": "https://...", "source_label": "OpenAI", "subject_label": "OpenAI"}}
+
+If you found the subject but NOT a primary URL:
+{{"primary_url": null, "source_label": "{source_domain}", "subject_label": "Name of Subject"}}
+
+Do NOT return null. ALWAYS return JSON with at least a subject_label.
+Do NOT wrap in markdown fences. Return ONLY the JSON.

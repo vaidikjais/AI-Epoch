@@ -1,0 +1,7 @@
+Your previous response was not valid JSON. Here is what you returned:
+
+{last_raw}
+
+Please return ONLY valid JSON (no markdown fences, no commentary). Original request:
+
+{user_prompt}

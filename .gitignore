@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+agentic/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+.env.backup
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+server.log
+
+# SQLite (legacy)
+newsletter.db
+
+# Playwright cache
+playwright/.cache/
+
+# Test / debug outputs
+pipeline*.json
+scout_test.json
+.pytest_cache/
+
+# uv
+.python-version
