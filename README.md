@@ -2,6 +2,10 @@
 
 AI-powered newsletter generation system using autonomous LLM agents orchestrated by LangGraph.
 
+## Demo
+
+- https://youtu.be/etfbk0gGlks
+
 ## What It Does
 
 Given a topic (e.g. "AI in healthcare"), the system automatically:
